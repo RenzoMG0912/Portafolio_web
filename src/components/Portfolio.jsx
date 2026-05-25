@@ -917,58 +917,179 @@ function SessionCard({ session, index, onEdit, onDelete, registerRef }) {
       ref={setCardRefs}
       className="session-card"
       style={{
+        background: "linear-gradient(145deg, rgba(15,23,42,0.9), rgba(10,16,35,0.95))",
+        border: "1px solid rgba(59,130,246,0.15)",
+        borderRadius: 20,
+        overflow: "hidden",
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(24px)",
         transition: `all 0.65s ease ${index * 90}ms`,
       }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "rgba(59,130,246,0.4)";
+        e.currentTarget.style.transform = "translateY(-3px)";
+        e.currentTarget.style.boxShadow = "0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(59,130,246,0.1)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "rgba(59,130,246,0.15)";
+        e.currentTarget.style.transform = inView ? "translateY(0)" : "translateY(24px)";
+        e.currentTarget.style.boxShadow = "none";
+      }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.9rem", gap: "0.6rem" }}>
-        <span className="session-week">{session.week}</span>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ color: "#64748B", fontSize: "0.8rem" }}>{session.images.length} imagen(es)</span>
-          <button type="button" className="session-action-btn" onClick={() => onEdit(session)}>
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "1.1rem 1.4rem",
+        background: "rgba(59,130,246,0.06)",
+        borderBottom: "1px solid rgba(59,130,246,0.12)",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <span style={{
+            display: "inline-flex", alignItems: "center", gap: "0.4rem",
+            padding: "0.3rem 0.85rem", borderRadius: 99,
+            background: "rgba(59,130,246,0.18)",
+            border: "1px solid rgba(59,130,246,0.35)",
+            color: "#93C5FD", fontSize: "0.78rem", fontWeight: 600,
+            fontFamily: "'Space Mono', monospace", letterSpacing: "0.03em",
+          }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#3B82F6", display: "inline-block" }} />
+            {session.week}
+          </span>
+          <span style={{ fontSize: "0.75rem", color: "#475569", display: "flex", alignItems: "center", gap: "0.35rem" }}>
+            🖼 {session.images.length} imagen(es)
+          </span>
+        </div>
+        <div style={{ display: "flex", gap: "0.4rem" }}>
+          <button
+            type="button"
+            onClick={() => onEdit(session)}
+            style={{
+              padding: "0.3rem 0.75rem", borderRadius: 8, fontSize: "0.72rem", cursor: "pointer",
+              border: "1px solid rgba(59,130,246,0.35)", background: "rgba(59,130,246,0.1)",
+              color: "#93C5FD", transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(59,130,246,0.22)"; e.currentTarget.style.borderColor = "rgba(59,130,246,0.6)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(59,130,246,0.1)"; e.currentTarget.style.borderColor = "rgba(59,130,246,0.35)"; }}
+          >
             Editar
           </button>
-          <button type="button" className="session-action-btn danger" onClick={() => onDelete(session.id)}>
+          <button
+            type="button"
+            onClick={() => onDelete(session.id)}
+            style={{
+              padding: "0.3rem 0.75rem", borderRadius: 8, fontSize: "0.72rem", cursor: "pointer",
+              border: "1px solid rgba(239,68,68,0.3)", background: "rgba(239,68,68,0.08)",
+              color: "#FCA5A5", transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(239,68,68,0.18)"; e.currentTarget.style.borderColor = "rgba(239,68,68,0.6)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(239,68,68,0.08)"; e.currentTarget.style.borderColor = "rgba(239,68,68,0.3)"; }}
+          >
             Eliminar
           </button>
         </div>
       </div>
 
-      <h3 style={{ color: "#F1F5F9", marginBottom: "0.5rem", fontFamily: "'Space Mono', monospace", fontSize: "1.05rem" }}>
-        {session.week}
-      </h3>
+      <div style={{ padding: "1.25rem 1.4rem" }}>
+        <div style={{
+          fontFamily: "'Space Mono', monospace", fontSize: "1.1rem", fontWeight: 700,
+          color: "#F1F5F9", marginBottom: "1rem",
+          display: "flex", alignItems: "center", gap: "0.5rem",
+        }}>
+          {session.week}
+          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, rgba(59,130,246,0.3), transparent)" }} />
+        </div>
 
-      <div className="session-topics-stack" style={{ marginBottom: "1rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem", marginBottom: "1.25rem" }}>
         {session.topics.map((entry, topicIndex) => (
-          <article key={`${session.id}-topic-${topicIndex}`} className="session-topic-block">
-            <h4 style={{ color: "#DBEAFE", fontSize: "0.95rem", marginBottom: "0.35rem", fontFamily: "'Space Mono', monospace" }}>
-              {entry.topic || `Tema ${topicIndex + 1}`}
-            </h4>
-            {entry.description && (
-              <p style={{ color: "#94A3B8", lineHeight: 1.7, fontSize: "0.88rem" }}>
-                {entry.description}
-              </p>
-            )}
-          </article>
-        ))}
-      </div>
-
-      <div className="session-images">
-        {session.images.length ? (
-          session.images.map((imageUrl, imageIndex) => (
-            <img
-              key={`${session.week}-${imageIndex}`}
-              src={imageUrl}
-              alt={`${getPrimaryTopicLabel(session)} - evidencia ${imageIndex + 1}`}
-              loading="lazy"
-            />
-          ))
-        ) : (
-          <div style={{ color: "#64748B", fontSize: "0.85rem", border: "1px dashed rgba(148,163,184,0.35)", borderRadius: 12, padding: "1rem" }}>
-            Esta sesión no tiene imágenes aún.
+          <div
+            key={`${session.id}-topic-${topicIndex}`}
+            style={{
+              display: "flex", gap: "0.85rem", alignItems: "flex-start",
+              padding: "0.75rem 1rem",
+              background: "rgba(255,255,255,0.025)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderLeft: "3px solid rgba(59,130,246,0.5)",
+              borderRadius: 12,
+              transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(59,130,246,0.06)";
+              e.currentTarget.style.borderLeftColor = "#3B82F6";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(255,255,255,0.025)";
+              e.currentTarget.style.borderLeftColor = "rgba(59,130,246,0.5)";
+            }}
+          >
+            <div style={{
+              minWidth: 22, height: 22, borderRadius: 6, flexShrink: 0,
+              background: "rgba(59,130,246,0.18)",
+              border: "1px solid rgba(59,130,246,0.3)",
+              color: "#60A5FA", fontSize: "0.68rem", fontWeight: 700,
+              fontFamily: "'Space Mono', monospace",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              marginTop: 1,
+            }}>
+              {String(topicIndex + 1).padStart(2, "0")}
+            </div>
+            <div style={{ flex: 1 }}>
+              <h4 style={{
+                fontSize: "0.9rem", fontWeight: 600, color: "#DBEAFE",
+                marginBottom: entry.description ? "0.25rem" : 0,
+                fontFamily: "'Space Mono', monospace", lineHeight: 1.4,
+              }}>
+                {entry.topic || `Tema ${topicIndex + 1}`}
+              </h4>
+              {entry.description && (
+                <p style={{ fontSize: "0.82rem", color: "#64748B", lineHeight: 1.65, margin: 0 }}>
+                  {entry.description}
+                </p>
+              )}
+            </div>
           </div>
-        )}
+        ))}
+        </div>
+
+        <div>
+          <div style={{
+            fontSize: "0.72rem", color: "#475569",
+            fontFamily: "'Space Mono', monospace",
+            textTransform: "uppercase", letterSpacing: "0.08em",
+            marginBottom: "0.6rem",
+            display: "flex", alignItems: "center", gap: "0.4rem",
+          }}>
+            Evidencias
+            <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.06)" }} />
+          </div>
+
+          {session.images.length ? (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0.7rem" }}>
+              {session.images.map((imageUrl, imageIndex) => (
+                <img
+                  key={`${session.week}-${imageIndex}`}
+                  src={imageUrl}
+                  alt={`${getPrimaryTopicLabel(session)} - evidencia ${imageIndex + 1}`}
+                  loading="lazy"
+                  style={{
+                    width: "100%", height: 190, objectFit: "cover",
+                    borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)",
+                    transition: "all 0.25s", display: "block",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(59,130,246,0.4)"; e.currentTarget.style.transform = "scale(1.01)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"; e.currentTarget.style.transform = "scale(1)"; }}
+                />
+              ))}
+            </div>
+          ) : (
+            <div style={{
+              display: "flex", alignItems: "center", gap: "0.5rem",
+              padding: "0.85rem 1rem",
+              border: "1px dashed rgba(100,116,139,0.3)",
+              borderRadius: 10, color: "#475569", fontSize: "0.82rem",
+            }}>
+              🖼 Esta sesión no tiene imágenes aún.
+            </div>
+          )}
+        </div>
       </div>
     </article>
   );
