@@ -94,39 +94,63 @@ export const SESSIONS = [
     topics: [
       {
         topic: "Fundamentos de las Tecnologías Web",
-        description: "Las tecnologías web permiten crear aplicaciones y servicios accesibles mediante internet usando navegadores web. Facilitan la comunicación entre clientes y servidores para compartir información de manera rápida y segura.",
+        description: "Las tecnologías web permiten crear aplicaciones y servicios accesibles mediante internet usando navegadores web. Estas tecnologías facilitan la comunicación entre clientes (usuarios) y servidores para compartir información de manera rápida y segura.",
       },
       {
         topic: "Soluciones Web",
-        description: "Las soluciones web resuelven necesidades concretas mediante sistemas, aplicaciones y plataformas accesibles en línea.",
+        description: "Introducción a las formas en que la web resuelve necesidades concretas mediante distintos tipos de software y plataformas conectadas.",
       },
       {
-        topic: "Sistema Web, Aplicación Web, Sitio Web y Página Web",
-        description: "Un sistema web integra componentes conectados por internet; una aplicación web funciona en el navegador; un sitio web agrupa páginas relacionadas; y una página web es un documento individual dentro de un sitio.",
+        topic: "Sistema Web",
+        description: "Es un conjunto de componentes y funcionalidades conectadas mediante internet que permiten realizar procesos específicos, como sistemas académicos, bancarios o empresariales.",
+      },
+      {
+        topic: "Aplicación Web",
+        description: "Es un software que funciona desde un navegador web sin necesidad de instalación local. Permite interacción dinámica con el usuario. Ejemplos: Gmail, Google Docs y Facebook.",
+      },
+      {
+        topic: "Sitio Web",
+        description: "Es un conjunto de páginas web relacionadas bajo un mismo dominio y estructura. Ejemplo: www.openai.com.",
+      },
+      {
+        topic: "Página Web",
+        description: "Es un documento individual dentro de un sitio web que contiene información visual, texto, imágenes o videos.",
       },
       {
         topic: "Tecnologías Web Básicas",
-        description: "HTML estructura el contenido, CSS define la apariencia visual y JavaScript agrega interactividad y dinamismo a las páginas web.",
+        description: "HTML, CSS y JavaScript son las tecnologías fundamentales para estructurar, diseñar e interactuar con páginas web.",
+      },
+      {
+        topic: "HTML",
+        description: "Lenguaje utilizado para estructurar el contenido de una página web.",
+      },
+      {
+        topic: "CSS",
+        description: "Lenguaje encargado del diseño y la apariencia visual de las páginas web.",
+      },
+      {
+        topic: "JavaScript",
+        description: "Lenguaje de programación que permite agregar interactividad y dinamismo a las páginas web.",
       },
       {
         topic: "Lenguajes y Tecnologías Complementarias",
-        description: "PHP se usa para backend, Python para desarrollo web y procesamiento de datos, SQL para bases de datos, XML para intercambio y almacenamiento de información, y JSON como formato ligero de datos.",
+        description: "PHP se usa para desarrollo backend, Python para desarrollo web y procesamiento de datos, SQL para gestión de bases de datos, XML para intercambio y almacenamiento de información y JSON como formato ligero para intercambio de datos.",
       },
       {
         topic: "Tecnologías Gráficas Web",
-        description: "SVG permite imágenes vectoriales escalables sin pérdida de calidad, mientras que WebGL habilita gráficos 2D y 3D acelerados por hardware dentro del navegador.",
+        description: "Incluyen SVG, un formato gráfico vectorial para imágenes escalables sin pérdida de calidad, y WebGL, una tecnología que permite gráficos 2D y 3D acelerados por hardware dentro del navegador.",
       },
       {
         topic: "Funcionamiento de la Web",
-        description: "DNS traduce nombres de dominio en direcciones IP, TCP/IP permite la comunicación entre dispositivos y HTTP/HTTPS transfieren información entre navegadores y servidores; HTTPS añade cifrado SSL/TLS.",
+        description: "DNS traduce nombres de dominio en direcciones IP para localizar servidores en internet. TCP/IP permite la comunicación y transmisión de datos entre dispositivos. HTTP y HTTPS se usan para transferir información entre navegadores y servidores; HTTPS lo hace de forma segura mediante cifrado SSL/TLS.",
       },
       {
         topic: "Roles en el Desarrollo de Aplicaciones para Internet",
-        description: "El desarrollador frontend se encarga de la parte visual e interactiva, el backend gestiona la lógica del servidor y el fullstack combina ambas áreas para crear aplicaciones completas.",
+        description: "El desarrollador frontend se encarga de la parte visual e interactiva; el backend gestiona la lógica del servidor, las bases de datos y el procesamiento interno; y el fullstack combina conocimientos de ambas áreas para desarrollar aplicaciones completas.",
       },
       {
         topic: "Exposición del sílabo",
-        description: "Presentación general del contenido, la organización del curso y el alcance de los temas que se trabajarán durante las sesiones.",
+        description: "Presentación general del sílabo y de la organización de las sesiones del curso.",
       },
     ],
     images: [
