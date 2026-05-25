@@ -93,12 +93,40 @@ export const SESSIONS = [
     week: "Semana 1",
     topics: [
       {
-        topic: "Fundamentos y planificación",
-        description: "Organización de objetivos del curso, herramientas base y metodología de trabajo.",
+        topic: "Fundamentos de las Tecnologías Web",
+        description: "Las tecnologías web permiten crear aplicaciones y servicios accesibles mediante internet usando navegadores web. Facilitan la comunicación entre clientes y servidores para compartir información de manera rápida y segura.",
       },
       {
-        topic: "Configuración del entorno",
-        description: "Instalación de herramientas, estructura inicial del proyecto y flujo de trabajo en equipo.",
+        topic: "Soluciones Web",
+        description: "Las soluciones web resuelven necesidades concretas mediante sistemas, aplicaciones y plataformas accesibles en línea.",
+      },
+      {
+        topic: "Sistema Web, Aplicación Web, Sitio Web y Página Web",
+        description: "Un sistema web integra componentes conectados por internet; una aplicación web funciona en el navegador; un sitio web agrupa páginas relacionadas; y una página web es un documento individual dentro de un sitio.",
+      },
+      {
+        topic: "Tecnologías Web Básicas",
+        description: "HTML estructura el contenido, CSS define la apariencia visual y JavaScript agrega interactividad y dinamismo a las páginas web.",
+      },
+      {
+        topic: "Lenguajes y Tecnologías Complementarias",
+        description: "PHP se usa para backend, Python para desarrollo web y procesamiento de datos, SQL para bases de datos, XML para intercambio y almacenamiento de información, y JSON como formato ligero de datos.",
+      },
+      {
+        topic: "Tecnologías Gráficas Web",
+        description: "SVG permite imágenes vectoriales escalables sin pérdida de calidad, mientras que WebGL habilita gráficos 2D y 3D acelerados por hardware dentro del navegador.",
+      },
+      {
+        topic: "Funcionamiento de la Web",
+        description: "DNS traduce nombres de dominio en direcciones IP, TCP/IP permite la comunicación entre dispositivos y HTTP/HTTPS transfieren información entre navegadores y servidores; HTTPS añade cifrado SSL/TLS.",
+      },
+      {
+        topic: "Roles en el Desarrollo de Aplicaciones para Internet",
+        description: "El desarrollador frontend se encarga de la parte visual e interactiva, el backend gestiona la lógica del servidor y el fullstack combina ambas áreas para crear aplicaciones completas.",
+      },
+      {
+        topic: "Exposición del sílabo",
+        description: "Presentación general del contenido, la organización del curso y el alcance de los temas que se trabajarán durante las sesiones.",
       },
     ],
     images: [

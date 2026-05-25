@@ -585,14 +585,6 @@ export default function Portfolio() {
         />
       )}
 
-      <footer style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "2rem 0", textAlign: "center" }}>
-        <div className="container">
-          <p style={{ color: "#334155", fontSize: "0.875rem" }}>
-            Diseñado & construido por <span style={{ color: "#3B82F6", fontFamily: "'Space Mono', monospace" }}>Renzo Melgarejo G.</span>
-            {" "}- {new Date().getFullYear()}
-          </p>
-        </div>
-      </footer>
     </>
   );
 }
@@ -746,7 +738,7 @@ function SessionsSection({ sessions, onEdit, onDelete, registerRef }) {
   return (
     <section className="section" style={{ paddingTop: "7.5rem", background: "rgba(255,255,255,0.01)" }}>
       <div className="container">
-        <SectionTitle subtitle="Crea sesiones con un tema, su descripción y evidencias visuales">Sesiones</SectionTitle>
+        <SectionTitle subtitle="Organiza avances, temas y evidencias por semana">Sesiones por semana</SectionTitle>
         <div className="sessions-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
           {sessions.map((session, index) => (
             <SessionCard
@@ -780,8 +772,8 @@ function ContactSection({ formData, sent, setFormData, handleSend }) {
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {[
                 { icon: "📧", label: "Email", href: "mailto:renzo@email.com", text: "renzo@email.com" },
-                { icon: "💼", label: "LinkedIn", href: "#", text: "linkedin.com/in/juanlopez" },
-                { icon: "🐙", label: "GitHub", href: "#", text: "github.com/juanlopez-dev" },
+                { icon: "💼", label: "LinkedIn", href: "#", text: "linkedin.com/in/tu-perfil" },
+                { icon: "🐙", label: "GitHub", href: "#", text: "github.com/tu-usuario" },
                 { icon: "📍", label: "Ubicación", href: "#", text: "Lima, Perú" },
               ].map((s) => (
                 <a key={s.label} href={s.href} className="social-btn">
@@ -897,7 +889,7 @@ function AboutText() {
   return (
     <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? "translateX(0)" : "translateX(-30px)", transition: "all 0.8s ease" }}>
       <p style={{ color: "#94A3B8", lineHeight: 1.9, marginBottom: "1.25rem" }}>
-        Soy Renzo Melgarejo G., estudiante de <strong style={{ color: "#60A5FA" }}>Ingeniería de Sistemas</strong> en la Universidad Nacional del Centro del Perú.
+        Soy Renzo Melgarejo G., estudiante de <strong style={{ color: "#60A5FA" }}>Ingeniería de Sistemas</strong> en la Universidad Nacional del Centro del Perú, cursando el 9no ciclo.
       </p>
       <p style={{ color: "#94A3B8", lineHeight: 1.9, marginBottom: "1.25rem" }}>
         Me apasiona resolver problemas complejos a través del código, desde el desarrollo de aplicaciones web completas hasta la implementación de modelos de machine learning. Creo firmemente en el poder de la tecnología para transformar la sociedad.
@@ -985,7 +977,7 @@ function SessionCard({ session, index, onEdit, onDelete, registerRef }) {
 function StatsPanel() {
   const [ref, inView] = useInView();
   const stats = [
-    { val: "8vo", label: "Semestre", icon: "🎓" },
+    { val: "9no", label: "Ciclo", icon: "🎓" },
     { val: "17/20", label: "Promedio", icon: "⭐" },
     { val: "6+", label: "Proyectos", icon: "🚀" },
     { val: "3+", label: "Años codificando", icon: "💻" },
