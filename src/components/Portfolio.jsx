@@ -7,13 +7,78 @@ import "../styles/portfolio.css";
 const SESSIONS_STORAGE_KEY = "portfolio.sessions";
 
 const NAV_ITEMS = [
-  { label: "Inicio", path: "/" },
-  { label: "Sobre mi", path: "/sobre-mi" },
-  { label: "Habilidades", path: "/habilidades" },
-  { label: "Proyectos", path: "/proyectos" },
-  { label: "Sesiones", path: "/sesiones" },
-  { label: "Contacto", path: "/contacto" },
+  { label: "Inicio", path: "/", accent: "#f97316", shadow: "rgba(249,115,22,0.48)", icon: "home" },
+  { label: "Sobre mí", path: "/sobre-mi", accent: "#2563eb", shadow: "rgba(37,99,235,0.5)", icon: "user" },
+  { label: "Habilidades", path: "/habilidades", accent: "#10b981", shadow: "rgba(16,185,129,0.48)", icon: "spark" },
+  { label: "Proyectos", path: "/proyectos", accent: "#06b6d4", shadow: "rgba(6,182,212,0.5)", icon: "grid" },
+  { label: "Sesiones", path: "/sesiones", accent: "#8b5cf6", shadow: "rgba(139,92,246,0.5)", icon: "calendar" },
+  { label: "Contacto", path: "/contacto", accent: "#ec4899", shadow: "rgba(236,72,153,0.48)", icon: "mail" },
 ];
+
+const NavIcon = ({ name }) => {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  switch (name) {
+    case "home":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" {...common}>
+          <path d="M3 11.5 12 4l9 7.5" />
+          <path d="M5.5 10.5V20h5.2v-5.8h2.6V20h5.2v-9.5" />
+        </svg>
+      );
+    case "user":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" {...common}>
+          <circle cx="12" cy="8.2" r="3.2" />
+          <path d="M5.5 19.4c1.7-3 4-4.5 6.5-4.5s4.8 1.5 6.5 4.5" />
+        </svg>
+      );
+    case "spark":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" {...common}>
+          <path d="M12 4.5 13.7 9l4.5 1.7-4.5 1.8-1.7 4.5-1.8-4.5L5.5 10.7 10 9l2-4.5Z" />
+          <path d="M19.5 4.5v3" />
+          <path d="M18 6h3" />
+        </svg>
+      );
+    case "grid":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" {...common}>
+          <path d="M4.5 4.5h6v6h-6z" />
+          <path d="M13.5 4.5h6v6h-6z" />
+          <path d="M4.5 13.5h6v6h-6z" />
+          <path d="M13.5 13.5h6v6h-6z" />
+        </svg>
+      );
+    case "calendar":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" {...common}>
+          <path d="M7.5 3.5v3" />
+          <path d="M16.5 3.5v3" />
+          <path d="M4.5 7.5h15" />
+          <rect x="4.5" y="6" width="15" height="13.5" rx="2.5" />
+          <path d="M8 11h2" />
+          <path d="M12 11h2" />
+          <path d="M8 15h2" />
+        </svg>
+      );
+    case "mail":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" {...common}>
+          <rect x="4.5" y="6.5" width="15" height="11" rx="2.5" />
+          <path d="m5.8 8 6.2 5 6.2-5" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
 
 const createSessionId = () => `session-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
@@ -382,20 +447,27 @@ export default function Portfolio() {
             &lt;RMG /&gt;
           </span>
 
-          <div style={{ display: "flex", gap: "0.25rem" }} className="desktop-nav">
+          <div style={{ display: "flex", gap: "0.45rem", alignItems: "center", flexWrap: "wrap" }} className="desktop-nav">
             {NAV_ITEMS.map((item) => (
               item.label === "Sesiones" ? (
                 <div key={item.path} className="sessions-nav-wrapper" ref={sessionsMenuRef}>
-                  <span
-                    className={`nav-link ${activePath === item.path ? "active" : ""}`}
+                  <button
+                    type="button"
+                    className={`nav-orb sessions-trigger ${activePath === item.path ? "active" : ""}`}
+                    style={{ "--nav-accent": item.accent, "--nav-glow": item.shadow }}
                     onClick={() => {
                       navigate(item.path);
                       setSessionsMenuOpen((prev) => !prev);
                     }}
+                    aria-haspopup="menu"
+                    aria-expanded={sessionsMenuOpen}
                   >
-                    {item.label}
+                    <span className="nav-orb__icon" aria-hidden="true">
+                      <NavIcon name={item.icon} />
+                    </span>
+                    <span className="nav-orb__label">{item.label}</span>
                     <span className="sessions-caret">▾</span>
-                  </span>
+                  </button>
 
                   {sessionsMenuOpen && (
                     <div
@@ -421,17 +493,23 @@ export default function Portfolio() {
                   )}
                 </div>
               ) : (
-                <Link key={item.path} className={`nav-link ${activePath === item.path ? "active" : ""}`} to={item.path}>
-                  {item.label}
+                <Link
+                  key={item.path}
+                  className={`nav-orb ${activePath === item.path ? "active" : ""}`}
+                  style={{ "--nav-accent": item.accent, "--nav-glow": item.shadow }}
+                  to={item.path}
+                  aria-label={item.label}
+                >
+                  <span className="nav-orb__icon" aria-hidden="true">
+                    <NavIcon name={item.icon} />
+                  </span>
+                  <span className="nav-orb__label">{item.label}</span>
                 </Link>
               )
             ))}
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-            <button className="btn-primary" style={{ padding: "0.5rem 1.25rem", fontSize: "0.85rem" }} onClick={() => navigate("/contacto")}>
-              Contáctame
-            </button>
             {pathname === "/sesiones" && (
               <button
                 type="button"
